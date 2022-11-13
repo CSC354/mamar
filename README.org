@@ -1,0 +1,19 @@
+#+title: Mamar
+
+Mamar — مَمَرُّ is our basic method to have constant porting for all services. It's a very basic
+tool:
+
+1. Inside a ~/opt/mamar~ file (should be passed as an argument), have a 2 columns structure:
+   #+begin_example
+# You can write comments
+service_1 8000
+service_2 8002
+service_3 8003
+   #+end_example
+   *You must do this with _spaces_ /not/ tabs.*
+2. Call ~GetPort~ RPC with the services name and it will return the corresponding port
+
+Mamar is listening at port 8000, we consider it a master port.
+
+* To Implement
++ Log invalid requests (for tracing purpose).
