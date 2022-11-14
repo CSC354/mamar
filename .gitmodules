@@ -1,3 +1,6 @@
 [submodule "protobufs"]
 	path = protobufs
 	url = https://github.com/CSC354/protobufs
+[submodule "sh"]
+	path = sh
+	url = https://github.com/CSC354/sh
