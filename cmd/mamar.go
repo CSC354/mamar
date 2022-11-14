@@ -29,7 +29,7 @@ func (*Mamar) GetPort(ctx context.Context, s *proto.Service) (*proto.Port, error
 
 func main() {
 	read()
-	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", 8000))
+	lis, err := net.Listen("tcp", ":8000")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
