@@ -74,6 +74,9 @@ func scan(scanner *bufio.Scanner) error {
 
 			return fmt.Errorf("line %d: can not map to master port", c)
 		}
+		if v, ok := mp[columns[0]]; ok {
+			return fmt.Errorf("line %d Port %s occured more than once", c, v)
+		}
 		mp[columns[0]] = columns[1]
 	}
 
