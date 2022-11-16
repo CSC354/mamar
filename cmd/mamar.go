@@ -23,7 +23,7 @@ type Mamar struct {
 }
 
 func (*Mamar) GetPort(ctx context.Context, s *proto.Service) (*proto.Port, error) {
-	port := proto.Port{Address: mp[s.Name]}
+	port := proto.Port{Address: fmt.Sprintf("%s:%s", s.Name, mp[s.Name])}
 	return &port, nil
 }
 
