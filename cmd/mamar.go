@@ -68,16 +68,21 @@ func scan(scanner *bufio.Scanner) error {
 			return fmt.Errorf("line %d: Schema break", nlines)
 		}
 		i, err := strconv.Atoi(columns[1])
-		if err != nil {
+		if err != nil && columns[1] != "db" {
 			return fmt.Errorf("line %d: %s is not a valid port numbering", c, columns[1])
 		} else if i == MASTER {
-
 			return fmt.Errorf("line %d: can not map to master port", c)
 		}
 		if v, ok := mp[columns[0]]; ok {
 			return fmt.Errorf("line %d Port %s occured more than once", c, v)
 		}
-		mp[columns[0]] = columns[1]
+
+		if columns[1] == "db" {
+			mp[columns[0]] = fmt.Sprintf("server=qaida;user id=qaida;password=rBwiY3JgqmG26q@;port=1433;database=%s;", columns[0])
+		} else {
+			mp[columns[0]] = columns[1]
+		}
+
 	}
 
 	if err := scanner.Err(); err != nil {
