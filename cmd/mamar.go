@@ -32,6 +32,7 @@ func (*Mamar) GetPort(ctx context.Context, s *proto.Service) (*proto.Port, error
 
 func main() {
 	read()
+	fmt.Println(mp)
 	lis, err := net.Listen("tcp", ":8000")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -83,7 +84,7 @@ func scan(scanner *bufio.Scanner) error {
 		// if columns[1] == "db" {
 		// 	mp[columns[0]] = fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=%s;", columns[0])
 		// } else {
-		// 	mp[columns[0]] = columns[1]
+		mp[columns[0]] = columns[1]
 		// }
 
 	}
