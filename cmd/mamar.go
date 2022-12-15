@@ -22,6 +22,10 @@ type Mamar struct {
 }
 
 func (*Mamar) GetPort(ctx context.Context, s *proto.Service) (*proto.Port, error) {
+	if mp[s.Name] == "db" {
+		p := proto.Port{Address: fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=%s;", s.Name)}
+		return &p, nil
+	}
 	port := proto.Port{Address: fmt.Sprintf("%s:%s", s.Name, mp[s.Name])}
 	return &port, nil
 }
@@ -75,11 +79,12 @@ func scan(scanner *bufio.Scanner) error {
 		if v, ok := mp[columns[0]]; ok {
 			return fmt.Errorf("line %d Port %s occured more than once", c, v)
 		}
-		if columns[1] == "db" {
-			mp[columns[0]] = fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=%s;", columns[0])
-		} else {
-			mp[columns[0]] = columns[1]
-		}
+
+		// if columns[1] == "db" {
+		// 	mp[columns[0]] = fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=%s;", columns[0])
+		// } else {
+		// 	mp[columns[0]] = columns[1]
+		// }
 
 	}
 
