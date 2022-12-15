@@ -4,14 +4,13 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	proto "github.com/CSC354/mamar/proto"
+	"google.golang.org/grpc"
 	"log"
 	"net"
 	"os"
 	"strconv"
 	"strings"
-
-	proto "github.com/CSC354/mamar/proto"
-	"google.golang.org/grpc"
 )
 
 var mp = map[string]string{}
@@ -76,9 +75,8 @@ func scan(scanner *bufio.Scanner) error {
 		if v, ok := mp[columns[0]]; ok {
 			return fmt.Errorf("line %d Port %s occured more than once", c, v)
 		}
-
 		if columns[1] == "db" {
-			mp[columns[0]] = fmt.Sprintf("server=qaida;user id=qaida;password=rBwiY3JgqmG26q@;port=1433;database=%s;", columns[0])
+			mp[columns[0]] = fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=%s;", columns[0])
 		} else {
 			mp[columns[0]] = columns[1]
 		}
