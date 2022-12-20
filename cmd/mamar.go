@@ -23,7 +23,7 @@ type Mamar struct {
 
 func (*Mamar) GetPort(ctx context.Context, s *proto.Service) (*proto.Port, error) {
 	if mp[s.Name] == "db" {
-		p := proto.Port{Address: fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=%s;", s.Name)}
+		p := proto.Port{Address: fmt.Sprintf("server=qaida;user id=sa;password=rBwiY3JgqmG26q@;port=1433;database=QAIDA;")}
 		return &p, nil
 	}
 	port := proto.Port{Address: fmt.Sprintf("%s:%s", s.Name, mp[s.Name])}
